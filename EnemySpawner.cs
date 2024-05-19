@@ -7,6 +7,7 @@ public class EnemyType
     public GameObject enemyPrefab; // Prefab of the enemy
     public int count; // Number of enemies of this type
     public string tag; // Tag for the enemies of this type
+    public bool shouldAssignTag; // Whether the tag should be assigned to the enemy
 }
 
 public class EnemySpawner : MonoBehaviour
@@ -18,12 +19,31 @@ public class EnemySpawner : MonoBehaviour
     public LayerMask environmentLayer; // Layer for objects implementing IEnvironment interface
 
     private Bounds spawnBounds;
-    [SerializeField] private Transform enemyParent;
+    [SerializeField] Transform enemyParent;
 
     void Start()
     {
+        // Check if enemyParent is assigned
+        if (enemyParent == null)
+        {
+            Debug.LogError("EnemyParent is not assigned. Please assign it in the inspector.");
+            return;
+        }
+
         // Get the bounds of the spawn area
+        if (spawnArea == null || spawnArea.GetComponent<Renderer>() == null)
+        {
+            Debug.LogError("SpawnArea is not assigned or does not have a Renderer component.");
+            return;
+        }
         spawnBounds = spawnArea.GetComponent<Renderer>().bounds;
+
+        // Check if player is assigned
+        if (player == null)
+        {
+            Debug.LogError("Player is not assigned. Please assign it in the inspector.");
+            return;
+        }
 
         // Spawn enemies at the start
         SpawnAllEnemies();
@@ -41,7 +61,7 @@ public class EnemySpawner : MonoBehaviour
                     spawnPosition = GetRandomSpawnPosition();
                 } while (!IsValidSpawnPosition(spawnPosition));
 
-                SpawnEnemy(spawnPosition, enemyType.enemyPrefab, enemyType.tag);
+                SpawnEnemy(spawnPosition, enemyType.enemyPrefab, enemyType.tag, enemyType.shouldAssignTag);
             }
         }
     }
@@ -70,11 +90,22 @@ public class EnemySpawner : MonoBehaviour
         return true;
     }
 
-    void SpawnEnemy(Vector3 position, GameObject enemyPrefab, string tag)
+    void SpawnEnemy(Vector3 position, GameObject enemyPrefab, string tag, bool shouldAssignTag)
     {
-        // Spawn the enemy
+        // Check if enemyPrefab is assigned
+        if (enemyPrefab == null)
+        {
+            Debug.LogError("Enemy prefab is not assigned.");
+            return;
+        }
+
+        // Spawn the enemy and set enemyParent as its parent
         GameObject enemy = Instantiate(enemyPrefab, position, Quaternion.identity, enemyParent);
-        // Assign the tag to the enemy
-        enemy.tag = tag;
+
+        // Assign the tag to the enemy if shouldAssignTag is true
+        if (shouldAssignTag)
+        {
+            enemy.tag = tag;
+        }
     }
 }
