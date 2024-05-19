@@ -1,3 +1,53 @@
+# FirstPersonControllerScript
+
+## Overview
+
+`FirstPersonControllerScript` is a Unity script that provides a basic implementation of a first-person character controller. It handles player movement, jumping, and mouse-based camera control with smooth rotation.
+
+## Features
+
+- **Frame Rate Control:** Set the target frame rate for the application.
+- **Movement:** Basic WASD movement with adjustable speed.
+- **Jumping:** Ability to jump with adjustable jump speed.
+- **Gravity:** Adjustable gravity for realistic falling.
+- **Mouse Look:** Smooth and responsive mouse look with adjustable sensitivity and smoothing.
+
+## Getting Started
+
+### Prerequisites
+
+- Unity 2019.4 or higher
+
+### Installation
+
+1. Download or clone the repository.
+2. Add the `FirstPersonControllerScript` to a GameObject with a `CharacterController` component in your Unity project.
+
+### Usage
+
+1. **Attach Script:**
+   - Attach the `FirstPersonControllerScript` to a GameObject in your scene that has a `CharacterController` component.
+
+2. **Configure in Inspector:**
+   - **FPS:** Set the target frames per second (default is 120).
+   - **Speed:** Set the movement speed (default is 6.0).
+   - **Jump Speed:** Set the jump speed (default is 8.0).
+   - **Gravity:** Set the gravity force (default is 20.0).
+   - **Look Sensitivity:** Adjust the mouse look sensitivity (default is 2).
+   - **Look Smoothness:** Adjust the smoothness of the mouse look (default is 0.1).
+
+### Example Inspector Configuration
+
+```plaintext
+FPS: 120
+Speed: 6.0
+Jump Speed: 8.0
+Gravity: 20.0
+Look Sensitivity: 2.0
+Look Smoothness: 0.1
+
+
+
 # EnemySpawner
 
 ## Overview
