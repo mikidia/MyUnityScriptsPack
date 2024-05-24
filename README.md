@@ -102,3 +102,25 @@ Spawn Area: SpawnAreaGameObject
 Player: PlayerGameObject
 Spawn Margin: 1.0
 Environment Layer: EnvironmentLayer
+```
+## Skills ScriptableObject
+
+This script represents a ScriptableObject for storing information about skills in the game.
+
+### Fields:
+
+- **Name**: The name of the skill.
+- **Damage**: The damage dealt by the skill.
+- **Duration**: The duration of the skill's effect.
+- **Cooldown (CD)**: The cooldown time of the skill after use.
+- **Type Of Damage**: The type of damage of the skill (0 - non-damaging, 1 - splashing, 2 - fire, 3 - ice, 4 - crushing, 5 - bullet, 6 - magical).
+- **Sprite**: The sprite representing the skill.
+- **Skill Effect**: The prefab of the game object representing the skill effect.
+- **Minimum Characteristics Level**: The minimum level of characteristic required to unlock the skill.
+   - **Intelect**: Intellect.
+   - **Stamina**: Stamina.
+   - **Strength**: Strength.
+   - **Agility**: Agility.
+   - **Vitality**: Vitality.
+- **Script**: The script associated with the skill (leave empty if not used or assign a script from the ASSETS FOLDER, not from the HIERARCHY).
+
